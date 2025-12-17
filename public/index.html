@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>IoT Mission Control</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+    <div class="dashboard">
+        <h1>SYSTEM STATUS: ONLINE</h1>
+        
+        <div class="cards-container">
+            <div class="card temp-card">
+                <h2>TEMPERATURE</h2>
+                <div class="value"><span id="temp-display">--</span> °C</div>
+            </div>
+
+            <div class="card hum-card">
+                <h2>HUMIDITY</h2>
+                <div class="value"><span id="hum-display">--</span> %</div>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        // THE BRAIN (Client-Side JavaScript)
+        // This script runs in your Browser, not on the Server.
+        
+        function fetchData() {
+            // 1. Knock on the server's door ("/data")
+            fetch('/data')
+                .then(response => response.json()) // 2. Convert text to JSON
+                .then(data => {
+                    // 3. Update the HTML
+                    document.getElementById('temp-display').innerText = data.temp;
+                    document.getElementById('hum-display').innerText = data.hum;
+                });
+        }
+
+        // Run this every 2 seconds
+        setInterval(fetchData, 2000);
+    </script>
+
+</body>
+</html>
+

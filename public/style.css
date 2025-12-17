@@ -1,0 +1,45 @@
+body {
+    background-color: #0d1117; /* GitHub Dark Mode Color */
+    color: #c9d1d9;
+    font-family: 'Courier New', Courier, monospace;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+    margin: 0;
+}
+
+.dashboard {
+    text-align: center;
+    border: 1px solid #30363d;
+    padding: 40px;
+    border-radius: 15px;
+    background: #161b22;
+    box-shadow: 0 0 20px rgba(0, 255, 0, 0.1);
+}
+
+h1 {
+    color: #2ea043; /* Success Green */
+    font-size: 1.5rem;
+    margin-bottom: 30px;
+}
+
+.cards-container {
+    display: flex;
+    gap: 20px;
+}
+
+.card {
+    background: #21262d;
+    padding: 20px;
+    border-radius: 10px;
+    width: 150px;
+    border: 1px solid #407fc7;
+}
+
+.value {
+    font-size: 2.5rem;
+    font-weight: bold;
+    margin-top: 10px;
+    color: #58a6ff; /* Tech Blue */
+}
