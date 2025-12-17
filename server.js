@@ -9,28 +9,30 @@ app.use(express.static('public'));
 // 1. Memory Variables
 let sensorData = { temp: 0, hum: 0, time: "" };
 
-// 2. NEW: The Database Function
+// 2. The Database Function (Fixed for Cloud)
 function saveToDatabase(data) {
+    let history = [];
+    
+    // A. Try to read the file. If it fails, that's okay!
     try {
-        // A. Read the current list from the file
         const fileContent = fs.readFileSync('database.json');
-        let history = JSON.parse(fileContent);
-
-        // B. Add the new reading
-        history.push(data);
-
-        // C. Keep only the last 50 readings (so the file doesn't get huge)
-        if (history.length > 50) {
-            history.shift(); // Remove the oldest one
-        }
-
-        // D. Save it back to the file
-        fs.writeFileSync('database.json', JSON.stringify(history, null, 2));
-    } catch (error) {
-        console.log("Database Error:", error);
+        history = JSON.parse(fileContent);
+    } catch (e) {
+        // File doesn't exist yet? No problem. We start with an empty list.
+        console.log("Database missing. Creating new one...");
     }
-}
 
+    // B. Add new data
+    history.push(data);
+
+    // C. Limit size (Keep last 50)
+    if (history.length > 50) {
+        history.shift();
+    }
+
+    // D. Write back to file (This actually creates the file if missing)
+    fs.writeFileSync('database.json', JSON.stringify(history, null, 2));
+}
 // 3. The Clock (Run every 5 seconds)
 setInterval(() => {
     // Generate Random Data
