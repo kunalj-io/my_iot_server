@@ -1,7 +1,7 @@
 const express = require('express');
 const fs = require('fs'); // NEW: Tool to read/write files
 const app = express();
-const PORT = 3000;
+const PORT = process.env.PORT || 3000;
 
 // Enable the Frontend
 app.use(express.static('public'));
