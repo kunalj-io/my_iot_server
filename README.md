@@ -39,4 +39,4 @@ A Full-Stack IoT Dashboard that simulates sensor data (Temperature & Humidity), 
 ---
 
 ### 👨‍💻 Author
-Built by **[Your Name]** as part of a 7-Day Sprint.
+Built by **[Kunal Jadhav]** as part of a 7-Day Sprint.
