@@ -24,21 +24,14 @@
     </div>
 
     <script>
-        // THE BRAIN (Client-Side JavaScript)
-        // This script runs in your Browser, not on the Server.
-        
         function fetchData() {
-            // 1. Knock on the server's door ("/data")
             fetch('/data')
-                .then(response => response.json()) // 2. Convert text to JSON
+                .then(response => response.json()) 
                 .then(data => {
-                    // 3. Update the HTML
                     document.getElementById('temp-display').innerText = data.temp;
                     document.getElementById('hum-display').innerText = data.hum;
                 });
         }
-
-        // Run this every 2 seconds
         setInterval(fetchData, 2000);
     </script>
 
